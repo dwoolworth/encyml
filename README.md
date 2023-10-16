@@ -1,5 +1,5 @@
 # `encyml` Kubernetes YAML Base64 Encode Secrets Data
-Using SOPS and Age creates an interesting problem when generating or modifying an existing encrypted secrets file.  When defining YAML secrets in a YAML file, they must be base64 encoded.  This prompts developers and managers to manually encode the secrets prior to pasting them into the YAML file.  It can be mistakenly done like this:
+Using SOPS and Age with Helm creates an interesting problem when generating or modifying an existing encrypted secrets file.  When defining YAML secrets in a YAML file, they must be base64 encoded.  This prompts developers and managers to manually encode the secrets prior to pasting them into the YAML file.  It can be mistakenly done like this:
 
 ```bash
 $ echo "secret-value-needing-to-be-encoded" | base64
@@ -11,7 +11,19 @@ $ echo -n "secret-value-needing-to-be-encoded" | base64
 ```
 This does not introduce the line feed character.
 
-Obviously, this is an easy mistake to make.
+Obviously, this is an easy mistake to make...
+
+`encyml` can solve this problem and make it easier to encode secrets.
+
+## Installation
+`encyml` is a Go program, so it can be easily compiled and installed on any platform.
+
+```bash
+# Clone this repository
+$ git clone 
+
+
+
 
 ## Use `encyml` As Solution
 This is a really simple Go app that just removes unnecessary whitespace from the end of each value in the YAML file, and can encode or decode data values for you. It works simplest by reading all the base64 encoded values, decoding them, removing whitespace from the end of each value, and then re-encoding them and writing them back to the same YAML file.  This works as a solution to files in-place.
