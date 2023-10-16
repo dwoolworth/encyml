@@ -18,14 +18,43 @@ Obviously, this is an easy mistake to make...
 ## Installation
 `encyml` is a Go program, so it can be easily compiled and installed on any platform.
 
+### Install Go on Mac OS X (if you don't have it already)
+
+```bash
+$ brew install go
+```
+
+### Install Go on Linux (https://go.dev/dl/)
+```
+$ curl -OL https://golang.org/dl/go1.21.3.linux-amd64.tar.gz
+$ sha256sum go1.21.3.linux-amd64.tar.gz
+
+# Compare the SHA256 checksum to the downloads page
+$ sudo tar -C /usr/local -xvf go1.21.3.linux-amd64.tar.gz
+
+# Alter your path in ~/.bashrc or ~/.profile to something like
+$ echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.bashrc
+$ source ~/.bashrc
+
+# Check if working
+$ go version
+> go version go1.16.7 linux/amd64
+```
+
+### Install Go on Windows
+Visit https://go.dev/dl/ and click on the Windows installer.
+
+### Install `encyml`
+
 ```bash
 # Clone this repository
-$ git clone 
+$ git clone git@github.com:dwoolworth/encyml.git
+$ cd encyml
+$ go get gopkg.in/yaml.v2
+$ go install encyml.go
+```
 
-
-
-
-## Use `encyml` As Solution
+## Usage For `encyml`
 This is a really simple Go app that just removes unnecessary whitespace from the end of each value in the YAML file, and can encode or decode data values for you. It works simplest by reading all the base64 encoded values, decoding them, removing whitespace from the end of each value, and then re-encoding them and writing them back to the same YAML file.  This works as a solution to files in-place.
 
 ```bash
